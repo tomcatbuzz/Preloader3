@@ -6301,49 +6301,16 @@ SplitText.version = "3.6.0";
 },{"./utils/strings.js":"node_modules/gsap/utils/strings.js"}],"app.js":[function(require,module,exports) {
 "use strict";
 
-var _gsap = _interopRequireWildcard(require("gsap"));
+var _gsap = _interopRequireDefault(require("gsap"));
 
 var _SplitText = require("gsap/SplitText");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _gsap.default.registerPlugin(_SplitText.SplitText);
 
 var colors = ["#ffc000", "#ff3b3b", "#ff8400"];
-var bubbles = 50; // const explode = (x, y) => {
-//   let particles = [];
-//   let ratio = window.devicePixelRatio;
-//   let c = document.createElement("canvas");
-//   let ctx = c.getContext("2d");
-//   c.style.position = "absolute";
-//   c.style.left = x - 100 + "px";
-//   c.style.top = y - 100 + "px";
-//   c.style.pointerEvents = "none";
-//   c.style.width = 200 + "px";
-//   c.style.height = 200 + "px";
-//   c.style.zIndex = 100;
-//   c.width = 200 * ratio;
-//   c.height = 200 * ratio;
-//   document.body.appendChild(c);
-//   for (var i = 0; i < bubbles; i++) {
-//     particles.push({
-//       x: c.width / 2,
-//       y: c.height / 2,
-//       radius: r(20, 30),
-//       color: colors[Math.floor(Math.random() * colors.length)],
-//       rotation: r(0, 360, true),
-//       speed: r(8, 12),
-//       friction: 0.9,
-//       opacity: r(0, 0.5, true),
-//       yVel: 0,
-//       gravity: 0.1,
-//     });
-//   }
-//   render(particles, ctx, c.width, c.height);
-//   setTimeout(() => document.body.removeChild(c), 1000);
-// };
+var bubbles = 50;
 
 var render = function render(particles, ctx, width, height) {
   requestAnimationFrame(function () {
@@ -6376,7 +6343,6 @@ var r = function r(a, b, c) {
 
 
 function exploder(x, y) {
-  // const explode = (x, y) => {
   var particles = [];
   var ratio = window.devicePixelRatio;
   var c = document.createElement("canvas");
@@ -6410,7 +6376,7 @@ function exploder(x, y) {
   render(particles, ctx, c.width, c.height);
   setTimeout(function () {
     return document.body.removeChild(c);
-  }, 1000); // };
+  }, 1000);
 }
 
 var split = new _SplitText.SplitText('.hover', {
@@ -6431,24 +6397,46 @@ _gsap.default.from(split.chars, {
 
 var right = document.querySelector('.right');
 var left = document.querySelector('.left');
+var loader = document.querySelector('.loader');
+var content = document.querySelector('.content');
 
 _gsap.default.fromTo(right, {
   x: 250
 }, {
   x: 0,
-  duration: 1,
-  rotation: -360
+  duration: 1.2,
+  rotation: -360,
+  ease: 'power4.inOut'
 });
 
 _gsap.default.fromTo(left, {
   x: -250
 }, {
   x: 0,
-  duration: 1,
+  duration: 1.2,
   rotation: 360,
+  ease: 'power4.inOut',
   onComplete: exploder
 });
-},{"gsap":"node_modules/gsap/index.js","gsap/SplitText":"node_modules/gsap/SplitText.js"}],"../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+
+_gsap.default.fromTo(loader, {
+  yPercent: 0
+}, {
+  yPercent: -100,
+  delay: 2,
+  duration: 1,
+  ease: 'power1.out'
+});
+
+_gsap.default.fromTo(content, {
+  yPercent: 100
+}, {
+  yPercent: 0,
+  delay: 1.5,
+  duration: 1,
+  ease: 'power1.in'
+});
+},{"gsap":"node_modules/gsap/index.js","gsap/SplitText":"node_modules/gsap/SplitText.js"}],"../../../Users/Tony/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -6476,7 +6464,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60513" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56272" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -6652,5 +6640,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
+},{}]},{},["../../../Users/Tony/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","app.js"], null)
 //# sourceMappingURL=/app.c328ef1a.js.map
